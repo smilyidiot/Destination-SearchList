@@ -1,10 +1,8 @@
-import {Component} from 'react'
-
 import DestinationSearch from './components/DestinationSearch'
 
 import './App.css'
 
-const initialDestList = [
+const destinationsList = [
   {
     id: 1,
     name: 'Melaka Mosque',
@@ -71,44 +69,6 @@ const initialDestList = [
   },
 ]
 
-class App extends Component {
-  state = {
-    searchInput: '',
-    destinationsList: initialDestList,
-  }
-
-  onSearch = event => {
-    this.setState({searchInput: event.target.value})
-  }
-
-  render() {
-    const {searchInput, destinationsList} = this.state
-    const searchResults = destinationsList.filter(eachItem =>
-      eachItem.name.toLowerCase().includes(searchInput),
-    )
-
-    return (
-      <div className="bg-cont">
-        <h1>Destination Search</h1>
-        <div className="search">
-          <input type="search" value={searchInput} onChange={this.onSearch} />
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/destinations-search-icon-img.png"
-            alt="search icon"
-            className="searchIcon"
-          />
-        </div>
-        <ul className="listed">
-          {searchResults.map(eachPlace => (
-            <DestinationSearch
-              destinationsInfo={eachPlace}
-              key={eachPlace.id}
-            />
-          ))}
-        </ul>
-      </div>
-    )
-  }
-}
+const App = () => <DestinationSearch destinationsList={destinationsList} />
 
 export default App
